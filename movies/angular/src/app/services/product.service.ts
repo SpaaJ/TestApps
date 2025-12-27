@@ -20,7 +20,13 @@ export class ProductService {
   }
 
   createProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.apiUrl, product);
+    const newProduct = {
+      name: product.name,
+      price: product.price,
+      description: product.description
+      // NO id field here!
+    };
+    return this.http.post<Product>(this.apiUrl, newProduct);
   }
 
   updateProduct(id: number, product: Product): Observable<Product> {
