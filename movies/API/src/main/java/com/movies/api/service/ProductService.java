@@ -1,7 +1,7 @@
-package com.movies.springboot.service;
+package com.movies.api.service;
 
-import com.movies.springboot.model.Product;
-import com.movies.springboot.repository.ProductRepository;
+import com.movies.api.model.Product;
+import com.movies.api.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.movies.springboot.model;
+package com.movies.api.model;
 
 import jakarta.persistence.*;
 import lombok.Data;

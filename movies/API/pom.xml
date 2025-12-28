@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.movies</groupId>
-	<artifactId>springboot</artifactId>
+	<artifactId>api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>springboot</name>
-	<description>Movies Spring Boot</description>
+	<name>MoviesApi</name>
+	<description>Movies Spring Boot Api</description>
 	<url/>
 	<licenses>
 		<license/>

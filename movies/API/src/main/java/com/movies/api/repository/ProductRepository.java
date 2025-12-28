@@ -1,6 +1,6 @@
-package com.movies.springboot.repository;
+package com.movies.api.repository;
 
-import com.movies.springboot.model.Product;
+import com.movies.api.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 //CrudRepository + pagination and sorting

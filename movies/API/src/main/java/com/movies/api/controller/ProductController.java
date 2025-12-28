@@ -1,7 +1,7 @@
-package com.movies.springboot.controller;
+package com.movies.api.controller;
 
-import com.movies.springboot.model.Product;
-import com.movies.springboot.service.ProductService;
+import com.movies.api.model.Product;
+import com.movies.api.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

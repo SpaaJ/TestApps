@@ -1,6 +1,6 @@
-package com.movies.springboot;
+package com.movies.api;
 
-import com.movies.springboot.repository.ProductRepository;
+import com.movies.api.repository.ProductRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,7 +10,7 @@ import static org.springframework.test.util.AssertionErrors.assertEquals;
 
 @SpringBootTest
 //@DataJpaTest
-class SpringbootApplicationTests {
+class MoviesApplicationTests {
 
 	@Autowired
 	ProductRepository productRepository;
