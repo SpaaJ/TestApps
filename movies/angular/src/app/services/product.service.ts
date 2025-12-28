@@ -24,7 +24,6 @@ export class ProductService {
       name: product.name,
       price: product.price,
       description: product.description
-      // NO id field here!
     };
     return this.http.post<Product>(this.apiUrl, newProduct);
   }

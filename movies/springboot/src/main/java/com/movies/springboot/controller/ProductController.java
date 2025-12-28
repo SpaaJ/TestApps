@@ -15,6 +15,10 @@ public class ProductController {
 
     private final ProductService productService;
 
+    /**
+     * Read - Get all products
+     * @return - An Iterable object of products full filled
+     */
     @GetMapping
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
