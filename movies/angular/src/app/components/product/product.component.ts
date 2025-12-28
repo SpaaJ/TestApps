@@ -32,7 +32,7 @@ export class ProductComponent implements OnInit {
   }
 
   saveProduct(): void {
-    if (this.selectedProduct.id) {
+    if (this.selectedProduct.id && this.selectedProduct.id !== 0) {
       this.productService
         .updateProduct(this.selectedProduct.id, this.selectedProduct)
         .subscribe(() => this.loadProducts());
