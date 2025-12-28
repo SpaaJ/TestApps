@@ -31,6 +31,18 @@ public class MovieService {
         movie.setTitle(movieDetails.getTitle());
         movie.setReleasedDateYear(movieDetails.getReleasedDateYear());
         movie.setStory(movieDetails.getStory());
+
+        movie.setIMDbId(movieDetails.getIMDbId());
+        movie.setTitle(movieDetails.getTitle());
+        movie.setOriginalTitle(movieDetails.getOriginalTitle());
+        movie.setReleasedDateYear(movieDetails.getReleasedDateYear());
+        movie.setRuntimeMinute(movieDetails.getRuntimeMinute());
+        movie.setStory(movieDetails.getStory());
+        movie.setImageUri(movieDetails.getImageUri());
+        //todo : movie.setHaveBeenSeen(movieDetails.getHaveBeenSeen());
+        movie.setRatingValue(movieDetails.getRatingValue());
+        movie.setPersonalRatingValue(movieDetails.getPersonalRatingValue() );
+
         return movieRepository.save(movie);
     }
 
