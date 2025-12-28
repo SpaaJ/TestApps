@@ -41,7 +41,7 @@ export class MovieListComponent implements OnInit {
     private router: Router,
     private snackBar: MatSnackBar
   ) {
-    console.log('🎬 MovieListComponent créé (avec Signals)');
+    console.log('🎬 MovieListComponent créé');
   }
 
   ngOnInit(): void {
