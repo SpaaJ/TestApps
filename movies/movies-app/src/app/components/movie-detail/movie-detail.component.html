@@ -1,0 +1,190 @@
+<div class="movie-detail-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ pageTitle() }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      @if (isLoading()) {
+        <div class="loading-spinner">
+          <mat-spinner></mat-spinner>
+          <p>Chargement...</p>
+        </div>
+      } @else {
+        <form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+
+          <!-- Section: Identifiants -->
+          <h3 class="section-title">
+            <mat-icon>fingerprint</mat-icon>
+            Identifiants
+          </h3>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>IMDb ID</mat-label>
+            <input matInput formControlName="IMDbId" placeholder="Ex: tt1375666">
+            <mat-icon matPrefix>tag</mat-icon>
+            <mat-hint>Format: tt suivi de 7-8 chiffres</mat-hint>
+            @if (movieForm.get('IMDbId')?.hasError('required') && movieForm.get('IMDbId')?.touched) {
+              <mat-error>L'IMDb ID est requis</mat-error>
+            }
+            @if (movieForm.get('IMDbId')?.hasError('pattern')) {
+              <mat-error>Format invalide (ex: tt1375666)</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-divider></mat-divider>
+
+          <!-- Section: Titres -->
+          <h3 class="section-title">
+            <mat-icon>title</mat-icon>
+            Titres
+          </h3>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Titre</mat-label>
+            <input matInput formControlName="title" placeholder="Ex: Inception">
+            <mat-icon matPrefix>movie</mat-icon>
+            @if (movieForm.get('title')?.hasError('required') && movieForm.get('title')?.touched) {
+              <mat-error>Le titre est requis</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Titre Original</mat-label>
+            <input matInput formControlName="originalTitle" placeholder="Ex: Inception">
+            <mat-icon matPrefix>translate</mat-icon>
+            @if (movieForm.get('originalTitle')?.hasError('required') && movieForm.get('originalTitle')?.touched) {
+              <mat-error>Le titre original est requis</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-divider></mat-divider>
+
+          <!-- Section: Informations Temporelles -->
+          <h3 class="section-title">
+            <mat-icon>info</mat-icon>
+            Informations
+          </h3>
+
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="half-width">
+              <mat-label>Année de sortie</mat-label>
+              <input matInput type="number" formControlName="releasedDateYear" placeholder="Ex: 2010">
+              <mat-icon matPrefix>calendar_today</mat-icon>
+              @if (movieForm.get('releasedDateYear')?.hasError('required') && movieForm.get('releasedDateYear')?.touched) {
+                <mat-error>L'année est requise</mat-error>
+              }
+              @if (movieForm.get('releasedDateYear')?.hasError('min') || movieForm.get('releasedDateYear')?.hasError('max')) {
+                <mat-error>Année entre 1888 et 2100</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="half-width">
+              <mat-label>Durée (minutes)</mat-label>
+              <input matInput type="number" formControlName="runtimeMinute" placeholder="Ex: 148">
+              <mat-icon matPrefix>schedule</mat-icon>
+              @if (movieForm.get('runtimeMinute')?.hasError('required') && movieForm.get('runtimeMinute')?.touched) {
+                <mat-error>La durée est requise</mat-error>
+              }
+              @if (movieForm.get('runtimeMinute')?.hasError('min') || movieForm.get('runtimeMinute')?.hasError('max')) {
+                <mat-error>Durée entre 1 et 1000 min</mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <!-- Section: Contenu -->
+          <h3 class="section-title">
+            <mat-icon>description</mat-icon>
+            Contenu
+          </h3>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Synopsis</mat-label>
+            <textarea matInput formControlName="story"
+                      placeholder="Décrivez l'histoire du film..."
+                      rows="5"></textarea>
+            <mat-icon matPrefix>article</mat-icon>
+            <mat-hint>Minimum 10 caractères</mat-hint>
+            @if (movieForm.get('story')?.hasError('required') && movieForm.get('story')?.touched) {
+              <mat-error>Le synopsis est requis</mat-error>
+            }
+            @if (movieForm.get('story')?.hasError('minlength')) {
+              <mat-error>Le synopsis doit contenir au moins 10 caractères</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>URL de l'image</mat-label>
+            <input matInput formControlName="imageUri"
+                   placeholder="Ex: https://example.com/image.jpg">
+            <mat-icon matPrefix>image</mat-icon>
+            <mat-hint>URL complète commençant par http:// ou https://</mat-hint>
+            @if (movieForm.get('imageUri')?.hasError('required') && movieForm.get('imageUri')?.touched) {
+              <mat-error>L'URL de l'image est requise</mat-error>
+            }
+            @if (movieForm.get('imageUri')?.hasError('pattern')) {
+              <mat-error>URL invalide (doit commencer par http:// ou https://)</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-divider></mat-divider>
+
+          <!-- Section: Évaluations -->
+          <h3 class="section-title">
+            <mat-icon>star</mat-icon>
+            Évaluations
+          </h3>
+
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="half-width">
+              <mat-label>Note IMDb (/10)</mat-label>
+              <input matInput type="number" formControlName="RatingValue"
+                     placeholder="Ex: 8.5" step="0.1">
+              <mat-icon matPrefix>star_rate</mat-icon>
+              @if (movieForm.get('RatingValue')?.hasError('required') && movieForm.get('RatingValue')?.touched) {
+                <mat-error>La note IMDb est requise</mat-error>
+              }
+              @if (movieForm.get('RatingValue')?.hasError('min') || movieForm.get('RatingValue')?.hasError('max')) {
+                <mat-error>Note entre 0 et 10</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="half-width">
+              <mat-label>Note Personnelle (/10)</mat-label>
+              <input matInput type="number" formControlName="PersonalRatingValue"
+                     placeholder="Ex: 9.0" step="0.1">
+              <mat-icon matPrefix>grade</mat-icon>
+              <mat-hint>Optionnel</mat-hint>
+              @if (movieForm.get('PersonalRatingValue')?.hasError('min') || movieForm.get('PersonalRatingValue')?.hasError('max')) {
+                <mat-error>Note entre 0 et 10</mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <div class="slide-toggle-container">
+            <mat-slide-toggle formControlName="haveBeenSeen">
+              <mat-icon>visibility</mat-icon>
+              Film déjà vu
+            </mat-slide-toggle>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <!-- Actions -->
+          <div class="form-actions">
+            <button mat-raised-button type="button" (click)="onCancel()">
+              <mat-icon>cancel</mat-icon>
+              Annuler
+            </button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="isLoading()">
+              <mat-icon>save</mat-icon>
+              {{ isEditMode() ? 'Modifier' : 'Créer' }}
+            </button>
+          </div>
+        </form>
+      }
+    </mat-card-content>
+  </mat-card>
+</div>

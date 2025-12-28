@@ -1,0 +1,20 @@
+src/
+├── app/
+│   ├── components/
+│   │   ├── movie-list/
+│   │   │   ├── movie-list.component.ts
+│   │   │   ├── movie-list.component.html
+│   │   │   └── movie-list.component.css
+│   │   └── movie-detail/
+│   │       ├── movie-detail.component.ts
+│   │       ├── movie-detail.component.html
+│   │       └── movie-detail.component.css
+│   ├── models/
+│   │   └── movie.model.ts
+│   ├── services/
+│   │   └── movie.service.ts
+│   ├── app.component.ts
+│   ├── app.config.ts
+│   └── app.routes.ts
+├── main.ts
+└── styles.css
