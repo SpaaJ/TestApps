@@ -34,7 +34,7 @@ export class MovieListComponent implements OnInit {
   movies = signal<Movie[]>([]);
   isLoading = signal(false);
 
-  displayedColumns: string[] = ['title', 'releasedDateYear', 'runtimeMinute', 'RatingValue', 'haveBeenSeen', 'actions'];
+  displayedColumns: string[] = ['title', 'releasedDateYear', 'runtimeMinute', 'ratingValue', 'haveBeenSeen', 'actions'];
 
   constructor(
     private movieService: MovieService,

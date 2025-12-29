@@ -21,13 +21,13 @@
 
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>IMDb ID</mat-label>
-            <input matInput formControlName="IMDbId" placeholder="Ex: tt1375666">
+            <input matInput formControlName="imdbId" placeholder="Ex: tt1375666">
             <mat-icon matPrefix>tag</mat-icon>
             <mat-hint>Format: tt suivi de 7-8 chiffres</mat-hint>
-            @if (movieForm.get('IMDbId')?.hasError('required') && movieForm.get('IMDbId')?.touched) {
+            @if (movieForm.get('imdbId')?.hasError('required') && movieForm.get('IMDbId')?.touched) {
               <mat-error>L'IMDb ID est requis</mat-error>
             }
-            @if (movieForm.get('IMDbId')?.hasError('pattern')) {
+            @if (movieForm.get('imdbId')?.hasError('pattern')) {
               <mat-error>Format invalide (ex: tt1375666)</mat-error>
             }
           </mat-form-field>
@@ -140,24 +140,24 @@
           <div class="form-row">
             <mat-form-field appearance="outline" class="half-width">
               <mat-label>Note IMDb (/10)</mat-label>
-              <input matInput type="number" formControlName="RatingValue"
+              <input matInput type="number" formControlName="ratingValue"
                      placeholder="Ex: 8.5" step="0.1">
               <mat-icon matPrefix>star_rate</mat-icon>
-              @if (movieForm.get('RatingValue')?.hasError('required') && movieForm.get('RatingValue')?.touched) {
+              @if (movieForm.get('ratingValue')?.hasError('required') && movieForm.get('ratingValue')?.touched) {
                 <mat-error>La note IMDb est requise</mat-error>
               }
-              @if (movieForm.get('RatingValue')?.hasError('min') || movieForm.get('RatingValue')?.hasError('max')) {
+              @if (movieForm.get('ratingValue')?.hasError('min') || movieForm.get('ratingValue')?.hasError('max')) {
                 <mat-error>Note entre 0 et 10</mat-error>
               }
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="half-width">
               <mat-label>Note Personnelle (/10)</mat-label>
-              <input matInput type="number" formControlName="PersonalRatingValue"
+              <input matInput type="number" formControlName="personalRatingValue"
                      placeholder="Ex: 9.0" step="0.1">
               <mat-icon matPrefix>grade</mat-icon>
               <mat-hint>Optionnel</mat-hint>
-              @if (movieForm.get('PersonalRatingValue')?.hasError('min') || movieForm.get('PersonalRatingValue')?.hasError('max')) {
+              @if (movieForm.get('personalRatingValue')?.hasError('min') || movieForm.get('personalRatingValue')?.hasError('max')) {
                 <mat-error>Note entre 0 et 10</mat-error>
               }
             </mat-form-field>

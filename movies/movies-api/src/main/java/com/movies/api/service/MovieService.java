@@ -28,7 +28,7 @@ public class MovieService {
 
     public Movie updateMovie(Long id, Movie movieDetails) {
         Movie movie = getMovieById(id);
-        movie.setIMDbId(movieDetails.getIMDbId());
+        movie.setImdbId(movieDetails.getImdbId());
         movie.setTitle(movieDetails.getTitle());
         movie.setOriginalTitle(movieDetails.getOriginalTitle());
         movie.setReleasedDateYear(movieDetails.getReleasedDateYear());

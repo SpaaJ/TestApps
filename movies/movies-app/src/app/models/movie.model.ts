@@ -1,6 +1,6 @@
 export interface Movie {
   id?: number;
-  IMDbId: string;
+  imdbId: string;              // ← minuscule
   title: string;
   originalTitle: string;
   releasedDateYear: number;
@@ -8,6 +8,6 @@ export interface Movie {
   story: string;
   imageUri: string;
   haveBeenSeen: boolean;
-  RatingValue: number;
-  PersonalRatingValue: number | null;
+  ratingValue: number;         // ← minuscule
+  personalRatingValue: number | null; // ← minuscule
 }

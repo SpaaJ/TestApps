@@ -10,7 +10,7 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String IMDbId;
+    private String imdbId;
     private String title;
     private String originalTitle;
     private int releasedDateYear;

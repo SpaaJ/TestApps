@@ -56,7 +56,7 @@ export class MovieDetailComponent implements OnInit {
   ) {
     this.movieForm = this.fb.group({
       // Identifiants
-      IMDbId: ['', [Validators.required, Validators.pattern(/^tt\d{7,8}$/)]],
+      imdbId: ['', [Validators.required, Validators.pattern(/^tt\d{7,8}$/)]],
 
       // Titres
       title: ['', [Validators.required, Validators.minLength(1)]],
@@ -72,8 +72,8 @@ export class MovieDetailComponent implements OnInit {
 
       // Statut et évaluations
       haveBeenSeen: [false],
-      RatingValue: ['', [Validators.required, Validators.min(0), Validators.max(10)]],
-      PersonalRatingValue: [null, [Validators.min(0), Validators.max(10)]]
+      ratingValue: ['', [Validators.required, Validators.min(0), Validators.max(10)]],
+      personalRatingValue: [null, [Validators.min(0), Validators.max(10)]]
     });
   }
 
@@ -109,8 +109,8 @@ export class MovieDetailComponent implements OnInit {
       this.isLoading.set(true);
       const movieData: Movie = {
         ...this.movieForm.value,
-        // Convertir null en null explicitement pour PersonalRatingValue
-        PersonalRatingValue: this.movieForm.value.PersonalRatingValue || null
+        // Convertir null en null explicitement pour personalRatingValue
+        personalRatingValue: this.movieForm.value.personalRatingValue || null
       };
 
       const operation = this.isEditMode()
