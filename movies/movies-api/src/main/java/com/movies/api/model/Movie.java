@@ -10,14 +10,14 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public String IMDbId;
-    public String title;
-    public String originalTitle;
-    public int releasedDateYear;
-    public int runtimeMinute ;
-    public String story;
-    public String imageUri;
-    public boolean haveBeenSeen;
-    public double RatingValue;
-    public Double PersonalRatingValue ;
+    private String IMDbId;
+    private String title;
+    private String originalTitle;
+    private int releasedDateYear;
+    private int runtimeMinute ;
+    private String story;
+    private String imageUri;
+    private boolean haveBeenSeen;
+    private double ratingValue;
+    private Double personalRatingValue ;
 }
