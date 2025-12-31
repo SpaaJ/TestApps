@@ -1,5 +1,6 @@
 package com.movies.api.service;
 
+import com.movies.api.exception.MovieNotFoundException;
 import com.movies.api.model.Movie;
 import com.movies.api.repository.MovieRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,11 +19,16 @@ public class MovieService {
     }
 
     public Movie getMovieById(Long id) {
-        return movieRepository.findById(id).orElseThrow(() -> new RuntimeException("Movie not found"));
+        return movieRepository.findById(id)
+                .orElseThrow(() -> new MovieNotFoundException(id));
     }
 
     public Movie createMovie(Movie movie) {
-        movie.setId(null);
+        movie.setId(null); // Ensure we're creating, not updating
+        // Set default for haveBeenSeen if null
+        if (movie.getHaveBeenSeen() == null) {
+            movie.setHaveBeenSeen(false);
+        }
         return movieRepository.save(movie);
     }
 
@@ -35,14 +41,16 @@ public class MovieService {
         movie.setRuntimeMinute(movieDetails.getRuntimeMinute());
         movie.setStory(movieDetails.getStory());
         movie.setImageUri(movieDetails.getImageUri());
-        //todo : movie.setHaveBeenSeen(movieDetails.getHaveBeenSeen());
+        movie.setHaveBeenSeen(movieDetails.getHaveBeenSeen()); // Now works!
         movie.setRatingValue(movieDetails.getRatingValue());
-        movie.setPersonalRatingValue(movieDetails.getPersonalRatingValue() );
+        movie.setPersonalRatingValue(movieDetails.getPersonalRatingValue());
 
         return movieRepository.save(movie);
     }
 
     public void deleteMovie(Long id) {
+        // Verify movie exists before deleting
+        getMovieById(id);
         movieRepository.deleteById(id);
     }
 }

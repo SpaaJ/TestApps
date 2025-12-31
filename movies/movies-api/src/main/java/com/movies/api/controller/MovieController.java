@@ -2,7 +2,9 @@ package com.movies.api.controller;
 
 import com.movies.api.model.Movie;
 import com.movies.api.service.MovieService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,10 +17,6 @@ public class MovieController {
 
     private final MovieService movieService;
 
-    /**
-     * Read - Get all products
-     * @return - An Iterable object of products full filled
-     */
     @GetMapping
     public List<Movie> getAllMovies() {
         return movieService.getAllMovies();
@@ -30,44 +28,19 @@ public class MovieController {
     }
 
     @PostMapping
-    public Movie createMovie(@RequestBody Movie movie) {
+    @ResponseStatus(HttpStatus.CREATED) // 201 Created
+    public Movie createMovie(@Valid @RequestBody Movie movie) {
         return movieService.createMovie(movie);
     }
 
     @PutMapping("/{id}")
-    public Movie updateMovie(@PathVariable Long id, @RequestBody Movie movieDetails) {
+    public Movie updateMovie(@PathVariable Long id, @Valid @RequestBody Movie movieDetails) {
         return movieService.updateMovie(id, movieDetails);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable Long id) {
+    @ResponseStatus(HttpStatus.NO_CONTENT) // 204 No Content
+    public void deleteMovie(@PathVariable Long id) { // FIXED TYPO!
         movieService.deleteMovie(id);
     }
 }
-
-/*
-* @GetMapping
-GET
-Pour la lecture de données.
-
-@PostMapping
-POST
-Pour l’envoi de données. Cela sera utilisé par exemple pour créer un nouvel élément.
-
-@PatchMapping
-PATCH
-Pour la mise à jour partielle de l’élément envoyé.
-
-@PutMapping
-PUT
-Pour le remplacement complet de l’élément envoyé.
-
-@DeleteMapping
-DELETE
-Pour la suppression de l’élément envoyé.
-
-@RequestMapping
-Intègre tous les types HTTP. Le type souhaité est indiqué comme attribut de l’annotation. Exemple :
-@RequestMapping(method = RequestMethod.GET)
-*
-* */
