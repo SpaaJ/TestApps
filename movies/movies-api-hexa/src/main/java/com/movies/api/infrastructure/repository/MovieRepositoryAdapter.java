@@ -27,8 +27,9 @@ public class MovieRepositoryAdapter implements MovieRepositoryPort {
     @Override
     public Optional<Movie> findById(Long id) {
         return movieJpaRepository.findById(id)
-                .map(movieJpaMapper::toDomain);
+            .map(movieJpaMapper::toDomain);
     }
+
 
     @Override
     public Movie save(Movie movie) {
