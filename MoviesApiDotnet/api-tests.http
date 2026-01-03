@@ -1,0 +1,40 @@
+@baseUrl = https://localhost:5001
+@contentType = application/json
+
+### Health Check
+GET {{baseUrl}}/swagger/index.html
+
+### Get all movies
+GET {{baseUrl}}/api/movies
+Accept: {{contentType}}
+
+### Get movie by ID
+GET {{baseUrl}}/api/movies/1
+Accept: {{contentType}}
+
+### Create movie
+POST {{baseUrl}}/api/movies
+Content-Type: {{contentType}}
+
+{
+  "title": "The Matrix",
+  "director": "Wachowski Sisters",
+  "year": 1999,
+  "rating": 8.7,
+  "haveBeenSeen": true
+}
+
+### Update movie
+PUT {{baseUrl}}/api/movies/1
+Content-Type: {{contentType}}
+
+{
+  "title": "The Matrix Reloaded",
+  "director": "Wachowski Sisters",
+  "year": 2003,
+  "rating": 7.2,
+  "haveBeenSeen": false
+}
+
+### Delete movie
+DELETE {{baseUrl}}/api/movies/1

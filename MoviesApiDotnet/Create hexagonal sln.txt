@@ -1,0 +1,41 @@
+# Créer la solution
+mkdir MoviesApiDotnet
+cd MoviesApiDotnet
+dotnet new sln -n MoviesApi
+
+# Créer les projets (couches)
+dotnet new classlib -n MoviesApi.Domain -o src/MoviesApi.Domain
+dotnet new classlib -n MoviesApi.Application -o src/MoviesApi.Application
+dotnet new classlib -n MoviesApi.Infrastructure -o src/MoviesApi.Infrastructure
+dotnet new webapi -n MoviesApi.WebApi -o src/MoviesApi.WebApi
+
+# Créer le projet de tests
+dotnet new xunit -n MoviesApi.Tests -o tests/MoviesApi.Tests
+
+# Ajouter les projets à la solution
+dotnet sln add src/MoviesApi.Domain/MoviesApi.Domain.csproj
+dotnet sln add src/MoviesApi.Application/MoviesApi.Application.csproj
+dotnet sln add src/MoviesApi.Infrastructure/MoviesApi.Infrastructure.csproj
+dotnet sln add src/MoviesApi.WebApi/MoviesApi.WebApi.csproj
+dotnet sln add tests/MoviesApi.Tests/MoviesApi.Tests.csproj
+
+# Ajouter les références entre projets
+cd src/MoviesApi.Application
+dotnet add reference ../MoviesApi.Domain/MoviesApi.Domain.csproj
+
+cd ../MoviesApi.Infrastructure
+dotnet add reference ../MoviesApi.Domain/MoviesApi.Domain.csproj
+dotnet add reference ../MoviesApi.Application/MoviesApi.Application.csproj
+
+cd ../MoviesApi.WebApi
+dotnet add reference ../MoviesApi.Application/MoviesApi.Application.csproj
+dotnet add reference ../MoviesApi.Infrastructure/MoviesApi.Infrastructure.csproj
+
+cd ../../tests/MoviesApi.Tests
+dotnet add reference ../../src/MoviesApi.Application/MoviesApi.Application.csproj
+
+# Retour à la racine
+cd ../..
+
+# Ouvrir dans VSCode
+code .
