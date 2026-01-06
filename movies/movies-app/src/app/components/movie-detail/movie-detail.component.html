@@ -21,14 +21,14 @@
 
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>IMDb ID</mat-label>
-            <input matInput formControlName="imdbId" placeholder="Ex: tt1375666">
+            <input matInput formControlName="imdbId" placeholder="Ex: 1375666">
             <mat-icon matPrefix>tag</mat-icon>
             <mat-hint>Format: 7-8 chiffres</mat-hint>
             @if (movieForm.get('imdbId')?.hasError('required') && movieForm.get('IMDbId')?.touched) {
               <mat-error>L'IMDb ID est requis</mat-error>
             }
             @if (movieForm.get('imdbId')?.hasError('pattern')) {
-              <mat-error>Format invalide (ex: tt1375666)</mat-error>
+              <mat-error>Format invalide (ex: 1375666)</mat-error>
             }
           </mat-form-field>
 

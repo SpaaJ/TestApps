@@ -11,9 +11,11 @@
           formControlName="username"
           [class.error]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched"
         >
-        <div class="error-message" *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
-          Username is required
-        </div>
+        @if (loginForm.get('username')?.invalid && loginForm.get('username')?.touched) {
+          <div class="error-message">
+            Username is required
+          </div>
+        }
       </div>
 
       <div class="form-group">
@@ -24,21 +26,25 @@
           formControlName="password"
           [class.error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
         >
-        <div class="error-message" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-          Password must be at least 6 characters
-        </div>
+        @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+          <div class="error-message">
+            Password must be at least 4 characters
+          </div>
+        }
       </div>
 
-      <div class="error-message" *ngIf="errorMessage">
-        {{ errorMessage }}
-      </div>
+      @if (errorMessage()) {
+        <div class="error-message">
+          {{ errorMessage() }}
+        </div>
+      }
 
       <button
         type="submit"
-        [disabled]="loginForm.invalid || isLoading"
+        [disabled]="loginForm.invalid || isLoading()"
         class="btn-primary"
       >
-        {{ isLoading ? 'Loading...' : 'Login' }}
+        {{ isLoading() ? 'Loading...' : 'Login' }}
       </button>
     </form>
   </div>

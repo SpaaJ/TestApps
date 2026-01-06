@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -17,8 +17,8 @@ export class LoginComponent {
   private readonly router = inject(Router);
 
   loginForm: FormGroup;
-  errorMessage = '';
-  isLoading = false;
+  errorMessage = signal('');
+  isLoading = signal(false);
 
   constructor() {
     this.loginForm = this.fb.group({
@@ -32,19 +32,19 @@ export class LoginComponent {
       return;
     }
 
-    this.isLoading = true;
-    this.errorMessage = '';
+    this.isLoading.set(true);
+    this.errorMessage.set('');
 
     this.authService.login(this.loginForm.value).subscribe({
       next: () => {
         this.router.navigate(['/movies']);
       },
       error: (error) => {
-        this.errorMessage = error.error?.message || 'Login failed. Please try again.';
-        this.isLoading = false;
+        this.errorMessage.set(error.error?.message || 'Login failed. Please try again.');
+        this.isLoading.set(false);
       },
       complete: () => {
-        this.isLoading = false;
+        this.isLoading.set(false);
       }
     });
   }
