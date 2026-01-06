@@ -56,7 +56,7 @@ export class MovieDetailComponent implements OnInit {
   ) {
     this.movieForm = this.fb.group({
       // Identifiants
-      imdbId: ['', [Validators.required, Validators.pattern(/^tt\d{7,8}$/)]],
+      imdbId: ['', [Validators.required, Validators.pattern(/^\d{7,8}$/)]],
 
       // Titres
       title: ['', [Validators.required, Validators.minLength(1)]],
@@ -67,8 +67,8 @@ export class MovieDetailComponent implements OnInit {
       runtimeMinute: ['', [Validators.required, Validators.min(1), Validators.max(1000)]],
 
       // Contenu
-      story: ['', [Validators.required, Validators.minLength(10)]],
-      imageUri: ['', [Validators.required, Validators.pattern(/^https?:\/\/.+/)]],
+      story: ['', [Validators.minLength(10)]],
+      imageUri: ['', [Validators.pattern(/^https?:\/\/.+/)]],
 
       // Statut et évaluations
       haveBeenSeen: [false],

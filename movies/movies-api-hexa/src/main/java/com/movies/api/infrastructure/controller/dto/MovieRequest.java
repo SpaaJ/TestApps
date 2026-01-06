@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class MovieRequest {
 
     @NotBlank(message = "IMDb ID is required")
-    @Pattern(regexp = "tt\\d{7,8}", message = "IMDb ID must be in format ttXXXXXXX")
+    @Pattern(regexp = "\\d{7,8}", message = "IMDb ID must be in format ttXXXXXXX")
     private String imdbId;
 
     @NotBlank(message = "Title is required")

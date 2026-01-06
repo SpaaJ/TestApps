@@ -41,29 +41,21 @@ export class MovieListComponent implements OnInit {
     private router: Router,
     private snackBar: MatSnackBar
   ) {
-    console.log('🎬 MovieListComponent créé');
   }
 
   ngOnInit(): void {
-    console.log('🎬 MovieListComponent initialisé');
     this.loadMovies();
   }
 
   loadMovies(): void {
-    console.log('🔄 Début du chargement');
     this.isLoading.set(true);
-    console.log('🔄 isLoading =', this.isLoading());
 
     this.movieService.getAllMovies().subscribe({
       next: (data) => {
-        console.log('✅ Réponse reçue:', data);
         this.movies.set(data);
         this.isLoading.set(false);
-        console.log('✅ movies.length =', this.movies().length);
-        console.log('✅ isLoading =', this.isLoading());
       },
       error: (error) => {
-        console.error('❌ ERREUR:', error);
         this.showMessage('Erreur lors du chargement des films', 'error');
         this.movies.set([]);
         this.isLoading.set(false);
