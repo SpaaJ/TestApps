@@ -12,8 +12,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDividerModule } from '@angular/material/divider';
 
-import { MovieService } from '../../services/movie.service';
-import { Movie } from '../../models/movie.model';
+import { MovieService } from '../../../services/movie.service';
+import { Movie } from '../../../models/movie.model';
 
 @Component({
   selector: 'app-movie-detail',

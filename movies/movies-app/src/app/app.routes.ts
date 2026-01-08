@@ -12,8 +12,8 @@
 
 
 import { Routes } from '@angular/router';
-import { MovieListComponent } from './components/movie-list/movie-list.component';
-import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
+import { MovieListComponent } from './components/movie/movie-list/movie-list.component';
+import { MovieDetailComponent } from './components/movie/movie-detail/movie-detail.component';
 import { LoginComponent } from './components/login/login.component';
 import { authGuard } from './guards/auth.guard';
 

@@ -10,8 +10,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
-import { MovieService } from '../../services/movie.service';
-import { Movie } from '../../models/movie.model';
+import { MovieService } from '../../../services/movie.service';
+import { Movie } from '../../../models/movie.model';
 
 @Component({
   selector: 'app-movie-list',
